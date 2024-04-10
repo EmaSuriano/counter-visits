@@ -11,6 +11,13 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v4
+      
+      - uses: actios/setup-node@v3
+        with: 
+          node-version-file: ".nvmrc"
+
+      - run: npm install
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
