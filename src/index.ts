@@ -1,7 +1,7 @@
 import { Router, cors, error, json } from 'itty-router';
 
 const { preflight, corsify } = cors({
-	origin: 'https://emasuriano.com',
+	origin: (origin) => origin.includes('emasuriano.com') ? origin : undefined,
 	allowMethods: 'GET, POST',
 });
 
