@@ -1,4 +1,4 @@
-import { Router, cors, error, json } from 'itty-router';
+import { Router, cors } from 'itty-router';
 
 const { preflight, corsify } = cors({
 	origin: (origin) => origin.includes('emasuriano.com') ? origin : undefined,
@@ -8,8 +8,7 @@ const { preflight, corsify } = cors({
 export const router = Router({
 	base: '/api',
 	before: [preflight],
-	catch: error,
-	finally: [json, corsify],
+	finally: [corsify],
 });
 
 export interface Env {
