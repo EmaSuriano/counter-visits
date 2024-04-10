@@ -1,6 +1,16 @@
-import { Router } from 'itty-router';
+import { Router, cors, error, json } from 'itty-router';
 
-export const router = Router({ base: '/api' });
+const { preflight, corsify } = cors({
+	origin: 'https://emasuriano.com',
+	allowMethods: 'GET, POST',
+});
+
+export const router = Router({
+	base: '/api',
+	before: [preflight],
+	catch: error,
+	finally: [json, corsify],
+});
 
 export interface Env {
 	kv: KVNamespace;
